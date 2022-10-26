@@ -1,5 +1,5 @@
 package main
 
 func main() {
-	println("Ba dum, tss!")
+	println("goreleaser-poc v0.1.1")
 }
