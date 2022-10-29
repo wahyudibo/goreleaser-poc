@@ -14,12 +14,17 @@ builds:
       - windows
       - darwin
 archives:
-  - replacements:
-      darwin: Darwin
-      linux: Linux
-      windows: Windows
+  -
+    name_template: "{{ .ProjectName }}_v{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    replacements:
+      darwin: darwin
+      linux: linux
+      windows: windows
       386: i386
       amd64: x86_64
+    format_overrides:
+      - goos: windows
+        format: zip
 checksum:
   name_template: 'checksums.txt'
 snapshot:
@@ -38,7 +43,6 @@ changelog:
 brews:
   -
     name: goreleaser-poc
-    homepage: "https://github.com/wahyudibo/goreleaser-poc"
     tap:
       owner: wahyudibo
       name: homebrew-goreleaser-poc
@@ -46,4 +50,16 @@ brews:
       name: wahyudibo
       email: wahyudi.ibo.wibowo@gmail.com
     commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
+    homepage: "https://github.com/wahyudibo/goreleaser-poc"
     license: "MIT"
+
+scoop:
+  bucket:
+    owner: wahyudibo
+    name: scoop-bucket-goreleaser-poc
+  commit_author:
+    name: wahyudibo
+    email: wahyudi.ibo.wibowo@gmail.com
+  commit_msg_template: "Scoop update for {{ .ProjectName }} version {{ .Tag }}"
+  homepage: "https://github.com/wahyudibo/goreleaser-poc"
+  license: "MIT"
