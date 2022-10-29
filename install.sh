@@ -10,12 +10,12 @@ function install_goreleaser_poc() {
           *)       ARCH=$(uname -m);;
       esac
       set -x
-      curl -fsSL https://github.com/wahyudibo/goreleaser-poc/releases/download/$VERSION/goreleaser-poc_$VERSION_linux_$ARCH.tar.gz | tar -xzv goreleaser-poc
+      curl -fsSL https://github.com/wahyudibo/goreleaser-poc/releases/download/${VERSION}/goreleaser-poc_${VERSION}_linux_$ARCH.tar.gz | tar -xzv goreleaser-poc
       sudo mv goreleaser-poc /usr/local/bin/goreleaser-poc
   elif [[ "$OSTYPE" == "darwin"* ]]; then
       ARCH=$(uname -m)
       set -x
-      curl -fsSL https://github.com/wahyudibo/goreleaser-poc/releases/download/$VERSION/goreleaser-poc_$VERSION_darwin_$ARCH.tar.gz | tar -xzv goreleaser-poc
+      curl -fsSL https://github.com/wahyudibo/goreleaser-poc/releases/download/${VERSION}/goreleaser-poc_${VERSION}_darwin_$ARCH.tar.gz | tar -xzv goreleaser-poc
       sudo mv goreleaser-poc /usr/local/bin/goreleaser-poc
   else
       set +x

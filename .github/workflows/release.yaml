@@ -41,5 +41,5 @@ jobs:
           git remote set-url --push origin https://wahyudibo:$GITHUB_TOKEN@github.com/wahyudibo/goreleaser-poc
           git checkout main
           git add .
-          git commit -a -m "Update version numbers: ${{ env.VERSION }}"
+          git commit -a -m "set version numbers: ${{ env.VERSION }}"
           git push origin main
