@@ -1,5 +1,5 @@
 package main
 
 func main() {
-	println("goreleaser-poc v0.1.2")
+	println("goreleaser-poc v0.1.3")
 }
