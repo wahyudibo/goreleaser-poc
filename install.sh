@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=v0.1.0
+VERSION="v0.1.0"
 
 function install_goreleaser_poc() {
   if [[ "$OSTYPE" == "linux"* ]]; then

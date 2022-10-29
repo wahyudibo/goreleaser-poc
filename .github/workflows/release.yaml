@@ -3,10 +3,10 @@ name: goreleaser-poc Release
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]$'
+      - 'v[0-9]+.[0-9]+.[0-9]'
 
 jobs:
-  goreleaser:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -28,7 +28,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
+      - name: Set new version as environment variable
+        run: echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
       - name: Set new version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-          ./set-version
+          sed -i -E "s/VERSION=\".*\"/VERSION=\"${{ env.VERSION }}\"/" install.sh
+          git config --global user.email "wahyudi.ibo.wibowo@gmail.com"
+          git config --global user.name "wahyudibo"
+          git remote set-url --push origin https://wahyudibo:$GITHUB_TOKEN@github.com/wahyudibo/goreleaser-poc
+          git checkout main
+          git add .
+          git commit -a -m "Update version numbers: ${{ env.VERSION }}"
+          git push origin main
